@@ -168,7 +168,9 @@
 			</div>
 		</div>
 
-		<div th:replace="fragments :: footer"></div>
+		<div class="text-center">
+			<p>Shopme Control Panel - Copyright &copy; Shopme</p>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function () {
