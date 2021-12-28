@@ -1751,3 +1751,15 @@ Binding(CTRL+SHIFT+C,
 
 !ENTRY org.eclipse.lsp4e 1 0 2021-12-28 12:36:33.664
 !MESSAGE [Info]	No ES Libary found for file: file:///E:/ShopmeEcommerce/ShopmeProject/ShopmeWebParent/ShopmeBackend/src/main/resources/static/js/common_form.js
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-28 14:27:49.427
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.vsiSGhGJ
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-28 14:27:49.449
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.vsiSGhGJ
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-28 14:27:49.452
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-28 14:27:49.453
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.vsiSGhGJ => OK
