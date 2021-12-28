@@ -7,9 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import javax.management.loading.PrivateClassLoader;
+
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadUtil.class);
 
 	public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
 		Path uploadPath = Paths.get(uploadDir);
@@ -22,6 +28,7 @@ public class FileUploadUtil {
 			Path filePath = uploadPath.resolve(fileName);
 			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
+			LOGGER.error("Could not save file: " + fileName);
 			throw new IOException("Could not save file: " + fileName, e);
 		}
 	}
@@ -29,17 +36,19 @@ public class FileUploadUtil {
 	public static void cleanDir(String dir) {
 		Path dirPath = Paths.get(dir);
 		try {
-			Files.list(dirPath).forEach(file ->{
-				if(!Files.isDirectory(file)) {
+			Files.list(dirPath).forEach(file -> {
+				if (!Files.isDirectory(file)) {
 					try {
 						Files.delete(file);
-					}catch (IOException e) {
-						System.out.println("Could not delete file: "+file);
+					} catch (IOException e) {
+						LOGGER.error("Could not save file: " + file);
+//						System.out.println("Could not delete file: " + file);
 					}
 				}
 			});
-		}catch (IOException e2) {
-			System.out.println("Could not list directory: " + dirPath);
+		} catch (IOException e2) {
+			LOGGER.error("Could not save file: " + dirPath);
+//			System.out.println("Could not list directory: " + dirPath);
 		}
 	}
 }

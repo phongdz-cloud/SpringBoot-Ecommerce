@@ -1,0 +1,32 @@
+2021-12-29 14:53:29.949  INFO 13152 --- [RMI TCP Connection(23)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-12-29 14:53:29.993  INFO 13152 --- [RMI TCP Connection(23)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-29 14:53:29.994  INFO 13152 --- [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2021-12-29 14:53:29.998  INFO 13152 --- [RMI TCP Connection(23)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2021-12-29 14:53:40.704  INFO 17068 --- [restartedMain] c.shopme.admin.ShopmeBackendApplication  : Starting ShopmeBackendApplication using Java 17.0.1 on DESKTOP-34M0QK7 with PID 17068 (E:\ShopmeEcommerce\ShopmeProject\ShopmeWebParent\ShopmeBackend\target\classes started by 19110 in E:\ShopmeEcommerce\ShopmeProject\ShopmeWebParent\ShopmeBackend)
+2021-12-29 14:53:40.707  INFO 17068 --- [restartedMain] c.shopme.admin.ShopmeBackendApplication  : No active profile set, falling back to default profiles: default
+2021-12-29 14:53:40.774  INFO 17068 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-29 14:53:40.775  INFO 17068 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-29 14:53:41.794  INFO 17068 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-29 14:53:41.857  INFO 17068 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2021-12-29 14:53:42.754  INFO 17068 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-29 14:53:42.768  INFO 17068 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-29 14:53:42.768  INFO 17068 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2021-12-29 14:53:42.911  INFO 17068 --- [restartedMain] o.a.c.c.C.[.[localhost].[/ShopmeAdmin]   : Initializing Spring embedded WebApplicationContext
+2021-12-29 14:53:42.911  INFO 17068 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2135 ms
+2021-12-29 14:53:43.257  INFO 17068 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-29 14:53:43.369  INFO 17068 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2021-12-29 14:53:43.680  INFO 17068 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-29 14:53:43.872  INFO 17068 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-29 14:53:44.612  INFO 17068 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-29 14:53:44.642  INFO 17068 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-29 14:53:46.177  INFO 17068 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-29 14:53:46.190  INFO 17068 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-29 14:53:46.247  WARN 17068 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-29 14:53:47.194  INFO 17068 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/images/**'] with []
+2021-12-29 14:53:47.194  INFO 17068 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/js/**'] with []
+2021-12-29 14:53:47.194  INFO 17068 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/webjars/**'] with []
+2021-12-29 14:53:47.230  INFO 17068 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4482de22, org.springframework.security.web.context.SecurityContextPersistenceFilter@7ae15399, org.springframework.security.web.header.HeaderWriterFilter@2ccf4cb9, org.springframework.security.web.csrf.CsrfFilter@1c485d76, org.springframework.security.web.authentication.logout.LogoutFilter@47e8082d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3c0e84b1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6bee8649, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75b7e352, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@960b09, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@128c511a, org.springframework.security.web.session.SessionManagementFilter@20e0cf2, org.springframework.security.web.access.ExceptionTranslationFilter@10254f4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@360e9305]
+2021-12-29 14:53:47.497  INFO 17068 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-12-29 14:53:48.567  INFO 17068 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-29 14:53:48.663  INFO 17068 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/ShopmeAdmin'
+2021-12-29 14:53:48.681  INFO 17068 --- [restartedMain] c.shopme.admin.ShopmeBackendApplication  : Started ShopmeBackendApplication in 8.517 seconds (JVM running for 9.962)
