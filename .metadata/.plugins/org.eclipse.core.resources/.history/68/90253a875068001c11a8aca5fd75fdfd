@@ -1,0 +1,18 @@
+package com.shopme.admin.category.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.shopme.common.entity.Category;
+
+@Controller
+public class CategoryController {
+
+	@GetMapping("/categories")
+	public String listCategories() {
+		
+		return "categories/categories";
+	}
+}

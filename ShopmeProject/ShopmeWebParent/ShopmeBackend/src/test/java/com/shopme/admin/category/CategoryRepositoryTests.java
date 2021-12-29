@@ -55,7 +55,7 @@ public class CategoryRepositoryTests {
 	@Test
 	public void testPrintHierarchicalCategories() {
 		Iterable<Category> categories = repo.findAll();
-
+ 
 		for (Category category : categories) {
 			if (category.getParent() == null) {
 				System.out.println(category.getName());

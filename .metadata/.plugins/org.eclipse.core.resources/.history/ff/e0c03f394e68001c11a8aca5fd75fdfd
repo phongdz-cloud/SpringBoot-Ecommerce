@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head th:replace="fragments :: page_head('Categories - Shop Admin')">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<h2>Hello Categories</h2>
+	</div>
+	</div>
+</body>
+
+</html>
