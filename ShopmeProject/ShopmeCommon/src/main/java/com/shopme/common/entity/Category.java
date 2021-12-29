@@ -52,7 +52,7 @@ public class Category {
 		copyCategory.setName(name);
 		return copyCategory;
 	}
-	
+
 	public static Category copIdAndName(Category category) {
 
 		Category copyCategory = new Category();
@@ -60,7 +60,7 @@ public class Category {
 		copyCategory.setName(category.getName());
 		return copyCategory;
 	}
-	
+
 	public static Category copyFull(Category category) {
 		Category copyCategory = new Category();
 		copyCategory.setId(category.getId());
@@ -68,14 +68,14 @@ public class Category {
 		copyCategory.setImage(category.getImage());
 		copyCategory.setAlias(category.getAlias());
 		copyCategory.setEnabled(category.isEnabled());
-		
+
 		return copyCategory;
 	}
-	
-	public static Category copyFull(Category category,String name) {
+
+	public static Category copyFull(Category category, String name) {
 		Category copyCategory = Category.copyFull(category);
 		copyCategory.setName(name);
-		
+
 		return copyCategory;
 	}
 
@@ -88,6 +88,12 @@ public class Category {
 	public Category(String name, Category parent) {
 		this(name);
 		this.parent = parent;
+	}
+
+	public Category(Integer id, String name, String alias) {
+		this.id = id;
+		this.name = name;
+		this.alias = alias;
 	}
 
 	public Integer getId() {
@@ -145,7 +151,7 @@ public class Category {
 	public void setChildren(Set<Category> children) {
 		this.children = children;
 	}
-	
+
 	@Transient
 	public String getImagePath() {
 		if (id == null || image == null)

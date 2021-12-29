@@ -55,13 +55,13 @@ public class CategoryRepositoryTests {
 	@Test
 	public void testPrintHierarchicalCategories() {
 		Iterable<Category> categories = repo.findAll();
- 
+
 		for (Category category : categories) {
 			if (category.getParent() == null) {
 				System.out.println(category.getName());
 
 				Set<Category> children = category.getChildren();
-				
+
 				for (Category subCategory : children) {
 					System.out.println("--" + subCategory.getName());
 					printChildren(subCategory, 1);
@@ -83,10 +83,28 @@ public class CategoryRepositoryTests {
 		}
 
 	}
-	
+
 	@Test
 	public void testListRootCategories() {
-		List<Category> rootCategories= repo.findRootCategories();
+		List<Category> rootCategories = repo.findRootCategories();
 		rootCategories.forEach(cat -> System.out.println(cat.getName()));
+	}
+
+	@Test
+	public void testFindByName() {
+		String name = "Computers1";
+		Category category = repo.findByName(name);
+		
+		assertThat(category).isNotNull();
+		assertThat(category.getName()).isEqualTo(name);
+	}
+	
+	@Test
+	public void testFindByAlias() {
+		String alias= "Electronics";
+		Category category= repo.findByAlias(alias);
+		
+		assertThat(category).isNotNull();
+		assertThat(category.getName()).isEqualTo(alias);
 	}
 }
