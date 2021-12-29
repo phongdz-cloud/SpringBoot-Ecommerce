@@ -3132,3 +3132,138 @@ java.lang.InterruptedException
 	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
 	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
 	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2021-12-29 11:29:13.956
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2021-12-29 11:37:18.828
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 2 0 2021-12-29 11:55:10.646
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:70)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:00:05.208
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1497, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:00:05.208
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1497, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:00:06.000
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1497, state before: 10 after: 4
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:03.855
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.EKlhsrfC
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:03.855
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.EKlhsrfC
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:03.856
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:03.856
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.EKlhsrfC => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:06.192
+!MESSAGE Entering DelegatingStreamConnectionProvider()
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:06.193
+!MESSAGE DelegatingStreamConnectionProvider classloader = org.eclipse.osgi.internal.loader.EquinoxClassLoader@7a757dbf[org.springframework.tooling.boot.ls:1.29.0.202112031705(id=564)]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:06.193
+!MESSAGE SpringBootLanguageServer exists!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.754
+!MESSAGE Boot LS startup time from start to initialized: 2558ms
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.856
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.LWhzOyAuisBatched = true
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.857
+!MESSAGE Setting up ClasspathListenerManager
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.857
+!MESSAGE Scheduling initial event for all projects ...
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.859
+!MESSAGE Scheduling initial event for all projects DONE
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.859
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.860
+!MESSAGE ClasspathListenerHandler addClasspathListener sts4.classpath.LWhzOyAu => OK
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.867
+!MESSAGE classpath=125 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.872
+!MESSAGE buffering callback sts4.classpath.LWhzOyAu ShopmeBackend false 125
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.872
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.875
+!MESSAGE classpath=49 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.878
+!MESSAGE buffering callback sts4.classpath.LWhzOyAu ShopmeCommon false 49
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.879
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.884
+!MESSAGE classpath=112 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.888
+!MESSAGE buffering callback sts4.classpath.LWhzOyAu ShopmeFrontEnd false 112
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:08.888
+!MESSAGE executing callback sts4.classpath.LWhzOyAu 3 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-12-29 12:06:09.278
+!MESSAGE executing callback sts4.classpath.LWhzOyAu SUCCESS [done]
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:19:59.285
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1524, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:19:59.286
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1524, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:19:59.300
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1524, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:20:11.246
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1545, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:20:11.246
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1545, state before: 10 after: 4
+
+!ENTRY org.eclipse.lsp4e 1 0 2021-12-29 12:20:11.257
+!MESSAGE [Log]	Scanner.scan has not advanced at offset 1545, state before: 10 after: 4
