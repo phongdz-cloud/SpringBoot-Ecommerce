@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -28,9 +29,14 @@ public class CategoryController {
 	private CategoryService service;
 
 	@GetMapping("/categories")
-	public String listCategories(Model model) {
-		List<Category> listCategories = service.listAll();
+	public String listAll(@Param("sortDir") String sortDir, Model model) {
+		if (sortDir == null || sortDir.isEmpty()) {
+			sortDir = "asc";
+		}
+		List<Category> listCategories = service.listAll(sortDir);
+		String reverseSortDir= sortDir.equals("asc") ? "desc" : "asc";
 		model.addAttribute("listCategories", listCategories);
+		model.addAttribute("reverseSortDir", reverseSortDir);
 		return "categories/categories";
 	}
 
@@ -76,6 +82,31 @@ public class CategoryController {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 			return "redirect:/categories";
 		}
-
 	}
+	
+	@GetMapping("/categories/delete/{id}")
+	public String deleteUser(@PathVariable(name = "id") Integer id, Model model,
+			RedirectAttributes redirectAttributes) {
+		try {
+			service.delete(id);
+			String dir = "../category-images/" + id;
+			FileUploadUtil.removeDir(dir);
+			redirectAttributes.addFlashAttribute("message", "The category ID " + id + " has been deleted successfully");
+		} catch (CategoryNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+		}	
+		return "redirect:/categories";
+	}
+
+	@GetMapping("/categories/{id}/enabled/{status}")
+	public String updateUserEnabledStatus(@PathVariable("id") Integer id, @PathVariable("status") boolean enabled,
+			RedirectAttributes redirectAttributes) {
+		service.updateCategoryEnabledStatus(id, enabled);
+		String status = enabled ? "enabled" : "disabled";
+		String message = "The category ID " + id + " has been " + status;
+		redirectAttributes.addFlashAttribute("message", message);
+		return "redirect:/categories";
+	}
+	
+	
 }

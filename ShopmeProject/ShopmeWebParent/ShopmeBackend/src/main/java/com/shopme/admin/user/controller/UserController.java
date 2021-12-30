@@ -131,7 +131,6 @@ public class UserController {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 		}
 		return "redirect:/users";
-
 	}
 
 	@GetMapping("/users/{id}/enabled/{status}")

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,12 +33,15 @@ public class Category {
 
 	private boolean enabled;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "parent_id")
 	private Category parent;
 
 	@OneToMany(mappedBy = "parent")
 	private Set<Category> children = new HashSet<>();
+
+	@Transient
+	private boolean hasChildren;
 
 	public Category() {
 	}
@@ -68,7 +72,8 @@ public class Category {
 		copyCategory.setImage(category.getImage());
 		copyCategory.setAlias(category.getAlias());
 		copyCategory.setEnabled(category.isEnabled());
-
+		copyCategory.setHasChildren(category.getChildren().size() >0);
+		
 		return copyCategory;
 	}
 
@@ -150,6 +155,21 @@ public class Category {
 
 	public void setChildren(Set<Category> children) {
 		this.children = children;
+	}
+
+	public boolean isHasChildren() {
+		return hasChildren;
+	}
+
+	public void setHasChildren(boolean hasChildren) {
+		this.hasChildren = hasChildren;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [" + (name != null ? "name=" + name + ", " : "")
+				+ (alias != null ? "alias=" + alias + ", " : "") + "enabled=" + enabled + ", "
+				+ (parent != null ? "parent=" + parent.getId(): "") + "]";
 	}
 
 	@Transient

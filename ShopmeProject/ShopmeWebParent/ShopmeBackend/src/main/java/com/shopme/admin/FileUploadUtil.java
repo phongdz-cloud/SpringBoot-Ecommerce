@@ -7,9 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import javax.management.loading.PrivateClassLoader;
-
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,13 +39,21 @@ public class FileUploadUtil {
 						Files.delete(file);
 					} catch (IOException e) {
 						LOGGER.error("Could not save file: " + file);
-//						System.out.println("Could not delete file: " + file);
 					}
 				}
 			});
 		} catch (IOException e2) {
 			LOGGER.error("Could not save file: " + dirPath);
 //			System.out.println("Could not list directory: " + dirPath);
+		}
+	}
+	
+	public static void removeDir(String dir) {
+		cleanDir(dir);
+		try {
+			Files.delete(Paths.get(dir));
+		} catch (Exception e) {
+			LOGGER.error("Could not remove directory: " + dir);
 		}
 	}
 }

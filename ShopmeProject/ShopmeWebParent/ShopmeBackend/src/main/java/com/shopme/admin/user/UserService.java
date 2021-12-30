@@ -128,7 +128,7 @@ public class UserService {
 			throw new UserNotFoundException("Could not find any user with Id " + id);
 		}
 
-		userRepo.deleteById(id);
+		//userRepo.deleteById(id);
 	}
 
 	public void updateUserEnabledStatus(Integer id, boolean enabled) {
