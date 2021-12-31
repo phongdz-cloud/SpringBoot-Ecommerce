@@ -43,9 +43,7 @@ public class UserController {
 			@Param("sortField") String sortField, @Param("sortDir") String sortDir, @Param("keyword") String keyword) {
 		Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 		List<User> listUsers = page.getContent();
-
-		System.out.println("Sort Field: " + sortField);
-		System.out.println("Sort Order: " + sortDir);
+		
 		long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
 		long endCount = startCount + UserService.USERS_PER_PAGE - 1;
 		if (endCount > page.getTotalElements()) {

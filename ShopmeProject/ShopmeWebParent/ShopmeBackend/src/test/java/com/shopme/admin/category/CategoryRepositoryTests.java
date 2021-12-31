@@ -82,7 +82,6 @@ public class CategoryRepositoryTests {
 			System.out.println(subCategory.getName());
 			printChildren(subCategory, newSubLevel);
 		}
-
 	}
 
 	@Test

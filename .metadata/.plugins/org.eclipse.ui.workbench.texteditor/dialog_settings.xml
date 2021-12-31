@@ -6,8 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="th:if"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="showImageThumbnail"/>
+			<item value="Sort dir:"/>
+			<item value="hasC"/>
+			<item value="hasChildren"/>
+			<item value="hasChidren"/>
 			<item value="th:if"/>
 			<item value="thumbnail"/>
 		</list>

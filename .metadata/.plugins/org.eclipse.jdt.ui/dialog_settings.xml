@@ -46,7 +46,7 @@
 		<item key="IgnoreDefault" value="true"/>
 		<item key="StringStyle" value="0"/>
 		<item key="LimitValue" value="10"/>
-		<item key="SkipNull" value="false"/>
+		<item key="SkipNull" value="true"/>
 		<item key="ToStringTemplateSelected" value="0"/>
 	</section>
 	<section name="AddGetterSetterDialog">
