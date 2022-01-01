@@ -49,6 +49,7 @@ public class BrandRepositoryTests {
 	public void testListAllBrands() {
 		Iterable<Brand> listBrands = brandRepo.findAll();
 		listBrands.forEach(brand -> System.out.println(brand));
+		assertThat(listBrands).isNotEmpty();
 	}
 
 	@Test

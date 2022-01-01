@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head th:replace="fragments :: page_head('Products - Shop Admin')">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<div>
+			<h2>Manage Products</h2>
+			<a th:href="@{/products/new}" class="fas fa-folder-plus fa-2x icon-dark mr-2"></a>
+			<a th:href="@{/products/export/csv}" class="fas fa-file-csv fa-2x icon-dark  mr-2"></a>
+		</div>
+		<div th:replace="fragments :: search_form_and_message('/products/page/1')" />
+
+		<div class="full-details">
+			<table class="table table-bordered table-striped table-hover table-responsive-xl">
+				<thead class="thead-dark">
+					<tr>
+						<th>Brand ID</th>
+						<th>Main Image</th>
+						<th>Product Name</th>
+						<th>Brand</th>
+						<th>Category</th>
+						<th>Enabled</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${listProducts}">
+						<td>[[${product.id}]]</td>
+						<td>
+						</td>
+						<td>[[${product.name}]]</td>
+						<td>[[${product.brand.name}]]</td>
+						<td>[[${product.category.name}]]</td>
+						<td>
+							<div
+								th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})">
+							</div>
+						</td>
+						<td>
+							<div th:replace="fragments :: edit('product','/products/edit/' + ${product.id})"></div>
+							&nbsp;
+							<div
+								th:replace="fragments :: delete('product',${product.id},'/product/delete/' + ${brand.id},true)">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="less-details">
+			<div th:each="brand : ${listBrands}" class="row m-1">
+				<div class="col-4">
+					<img th:src="@{${brand.logoPath}}" style="width: 100px;" />
+				</div>
+				<div class="col-8">
+					<div class="mt-2">
+						&nbsp;
+						<div th:replace="fragments :: edit('brand','/brands/edit/' + ${brand.id})"></div>
+						&nbsp;
+						<div th:replace="fragments :: delete('brand',${brand.id},'/brands/delete/' + ${brand.id},true)">
+						</div>
+					</div>
+				</div>
+				<div>&nbsp;</div>
+			</div>
+		</div>
+
+
+		<div th:replace="fragments :: pagination('/brands','brands')"></div>
+		<div th:replace="modal_fragments :: modal_dialog_delete"></div>
+		<div th:replace="fragments :: footer"></div>
+	</div>
+	<script type="text/javascript">
+		url = "[[@{/brands}]]";
+		nameId = "entityId";
+		nameTable = "brand";
+	</script>
+	<script th:src="@{/js/common_list.js}"></script>
+</body>
+
+</html>
