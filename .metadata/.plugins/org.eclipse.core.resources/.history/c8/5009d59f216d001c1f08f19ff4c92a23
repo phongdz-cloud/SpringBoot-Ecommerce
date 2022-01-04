@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head th:replace="fragments :: page_head(${pageTitle}, 'none')" />
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: header_menu"></div>
+		<div>
+			<h1>Products in Categories</h1>
+		</div>
+		
+		
+		<div th:replace="navigation :: footer_menu"></div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<body>
+	<div th:fragment = "content_menu" class="modal fade text-center" id="carouselModal">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content bg-dark">
+				<h1>Image Carousel Goes Here...</h1>
+			</div>
+		</div>
+		
+	</div>
+</body>
+
+</html>

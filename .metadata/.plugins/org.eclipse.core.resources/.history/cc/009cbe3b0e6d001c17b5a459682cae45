@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments :: page_head('Shopme', 'none')" />
+<body>
+	<h1>Welcome to Shopme eCommerce</h1>
+</body>
+</html>
