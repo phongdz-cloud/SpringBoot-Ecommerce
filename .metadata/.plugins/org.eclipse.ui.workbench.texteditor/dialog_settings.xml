@@ -6,19 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="search"/>
+		<item key="selection" value="Details"/>
 		<list key="findhistory">
-			<item value="search"/>
-			<item value="column"/>
-			<item value="startCount"/>
+			<item value="details"/>
+			<item value="#details"/>
+			<item value="40%"/>
+			<item value="Name"/>
+			<item value="page_link"/>
 			<item value="pagination"/>
-			<item value="showImageThumbnail"/>
-			<item value="Sort dir:"/>
-			<item value="hasC"/>
-			<item value="hasChildren"/>
-			<item value="hasChidren"/>
-			<item value="th:if"/>
-			<item value="thumbnail"/>
+			<item value="search_form"/>
+			<item value="numberOfExistingExtraImages + 1"/>
+			<item value="numberOfExistingExtraImages"/>
+			<item value="lists"/>
+			<item value="Category"/>
+			<item value="save"/>
+			<item value="status"/>
+			<item value="brand.id"/>
+			<item value="search_form_and_message"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymleaf.org">
 
-<head th:replace="fragments :: page_head(${pageTitle})">
+<head th:replace="fragments :: page_head(${pageTitle},'none')">
 
 </head>
 
@@ -76,6 +76,7 @@
 		<div th:replace="fragments :: footer"></div>
 	</div>
 	<script type="text/javascript">
+		MAX_FILE_SIZE = 102400; //100KB
 		moduleURL = "[[@{/categories}]]";
 
 		function checkUnique(form) {
@@ -94,9 +95,9 @@
 					form.submit();
 				} else if (response == "DuplicateName") {
 					showWarningModal("There is another category having same name " + catName);
-				}else if(response == "DuplicateAlias"){
+				} else if (response == "DuplicateAlias") {
 					showWarningModal("There is another category having same alias " + catAlias);
-				}else{
+				} else {
 					showErrorModal("Unknown response from server")
 				}
 			}).fail(function () {

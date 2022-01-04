@@ -35,7 +35,7 @@ public class CategoryService {
 		} else if (sortDir.equals("desc")) {
 			sort = sort.descending();
 		}
-		System.out.println(" key word: "+ keyword);
+		System.out.println(" key word: " + keyword);
 		Pageable pageable = PageRequest.of(pageNum - 1, ROOT_CATEGORY_PER_PAGE, sort);
 		Page<Category> pageCategories = null;
 		if (keyword != null && !keyword.isEmpty()) {
@@ -48,17 +48,17 @@ public class CategoryService {
 
 		pageInfo.setTotalElements(pageCategories.getTotalElements());
 		pageInfo.setTotalPages(pageCategories.getTotalPages());
-		
+
 		if (keyword != null && !keyword.isEmpty()) {
-			
+
 			List<Category> searchResult = pageCategories.getContent();
-			for(Category category : searchResult) {
+			for (Category category : searchResult) {
 				category.setHasChildren(category.getChildren().size() > 0);
 			}
 			return searchResult;
-		}else {
+		} else {
 			return listHierarchicalCategories(rootCategories, sortDir);
-		}	
+		}
 	}
 
 	private List<Category> listHierarchicalCategories(List<Category> rootCategories, String sortDir) {
@@ -99,7 +99,12 @@ public class CategoryService {
 	}
 
 	public Category save(Category category) {
-
+		Category parent = category.getParent();
+		if (parent != null) {
+			String allParentIds = parent.getAllParentIDs() == null ? "-" : parent.getAllParentIDs();
+			allParentIds += String.valueOf(parent.getId()) + "-";
+			category.setAllParentIDs(allParentIds);
+		}
 		return repo.save(category);
 	}
 

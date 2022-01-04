@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ProductRepositoryTests.testListAllProducts" project="ShopmeBackend" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.shopme.admin.product.ProductRepositoryTests" time="0.536" displayname="ProductRepositoryTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.product.ProductRepositoryTests]">
-    <testcase name="testListAllProducts" classname="com.shopme.admin.product.ProductRepositoryTests" time="0.536" displayname="testListAllProducts()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.product.ProductRepositoryTests]/[method:testListAllProducts()]"/>
-  </testsuite>
-</testrun>

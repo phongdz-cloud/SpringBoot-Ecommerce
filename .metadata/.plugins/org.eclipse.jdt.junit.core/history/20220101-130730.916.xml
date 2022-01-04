@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="BrandServiceTests.testCheckUniqueNewModeReturnOK" project="ShopmeBackend" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.shopme.admin.brand.BrandServiceTests" time="0.094" displayname="BrandServiceTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.brand.BrandServiceTests]">
-    <testcase name="testCheckUniqueNewModeReturnOK" classname="com.shopme.admin.brand.BrandServiceTests" time="0.094" displayname="testCheckUniqueNewModeReturnOK()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.brand.BrandServiceTests]/[method:testCheckUniqueNewModeReturnOK()]"/>
-  </testsuite>
-</testrun>

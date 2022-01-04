@@ -19,12 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.admin.brand.BrandNotFoundException;
 import com.shopme.admin.brand.BrandService;
-import com.shopme.admin.category.CategoryNotFoundException;
 import com.shopme.admin.category.CategoryService;
-import com.shopme.admin.user.UserService;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
-import com.shopme.common.entity.User;
 
 @Controller
 public class BrandController {
@@ -33,6 +30,7 @@ public class BrandController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
 	@GetMapping("/brands")
 	public String listFirstPage(Model model) {
 		return listByPage(1, model, "name", "asc", null);
@@ -76,13 +74,14 @@ public class BrandController {
 	}
 	
 	@PostMapping("/brands/save")
-	public String saveCategory(Brand brand, @RequestParam("fileImage") MultipartFile multipartFile,
+	public String saveBrand(Brand brand, @RequestParam("fileImage") MultipartFile multipartFile,
 			RedirectAttributes ra) throws IOException {
 		if (!multipartFile.isEmpty()) {
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			brand.setLogo(fileName);
 			Brand savedBrand = brandService.save(brand);
 			String uploadDir = "../brand-logos/" + savedBrand.getId();
+			FileUploadUtil.cleanDir(uploadDir);
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		} else {
 			brandService.save(brand);
@@ -92,7 +91,7 @@ public class BrandController {
 	}
 	
 	@GetMapping("/brands/edit/{id}")
-	public String editCategory(@PathVariable(name = "id") Integer id, Model model,
+	public String editBrand(@PathVariable(name = "id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
 			List<Category> listCategories = categoryService.listCategoriesUserdInForm();
@@ -109,7 +108,7 @@ public class BrandController {
 	}
 	
 	@GetMapping("/brands/delete/{id}")
-	public String deleteUser(@PathVariable(name = "id") Integer id, Model model,
+	public String deleteBrand(@PathVariable(name = "id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
 		try {
 			brandService.delete(id);
