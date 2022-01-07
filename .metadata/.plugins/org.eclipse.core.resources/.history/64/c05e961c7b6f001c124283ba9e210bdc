@@ -1,0 +1,14 @@
+var buttonLoad;
+
+$(document).ready(function(){
+	buttonLoad = $("#buttonLoadCountries");
+	
+});
+
+
+
+
+function showToastMessage(message) {
+	$("#toastMessage").text(message);
+	$(".toast").toast('show');
+}

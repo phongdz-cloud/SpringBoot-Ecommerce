@@ -12,16 +12,16 @@
 		<div class="row">
 			<div class="col-sm">
 				<div>
-					<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0"/>
+					<img id="bigImage" th:src="@{${product.mainImagePath}}" class="img-fluid" index="0" />
 				</div>
 				<div class="row justify-content-center">
 					<div class="m-2 border border-secondary p-1">
-						<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="50" index="0"/>
+						<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="50" index="0" />
 					</div>
 					<th:block th:each="extraImage, status : ${product.images}">
 						<div class="m-2 border border-secondary p-1">
-							<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="50" 
-								th:index="${status.count}"/>
+							<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="50"
+								th:index="${status.count}" />
 						</div>
 					</th:block>
 				</div>
@@ -35,13 +35,19 @@
 				</div>
 				<div>
 					List Price:
-					<span th:if="${product.discountPercent <= 0}">$ [[${product.price}]]</span>
-					<del><span th:if="${product.discountPercent > 0}">$ [[${product.price}]]</span></del>
+					<span th:if="${product.discountPercent <= 0}">
+						<div th:replace="product/product_fragment :: price_fragment(${product.price})"></div>
+					</span>
+					<del><span th:if="${product.discountPercent > 0}">
+							<div th:replace="product/product_fragment :: price_fragment(${product.price})"></div>
+						</span></del>
 				</div>
 				<div th:if="${product.discountPercent > 0}">
 					Price:
-					<span style="font-size: lagrger; color: darkred;">$ [[${product.discountPrice}]]</span>
-					([[${product.discountPercent}]] % off)
+					<span style="font-size: lagrger; color: darkred;">
+						<div th:replace="product/product_fragment :: price_fragment(${product.discountPrice})"></div>
+					</span>
+					([[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]] % off)
 				</div>
 				<div>&nbsp;</div>
 				<div th:utext="${product.shortDescription}"></div>
@@ -88,22 +94,22 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div th:replace="product/images_carousel :: content"></div>
 	<div th:replace="navigation :: footer_menu"></div>
 	<script type="text/javascript">
 		$(document).ready(function () {
 			bigImage = $("#bigImage");
-			
+
 			$(".image-thumbnail").mouseover(function () {
 				currentImageSource = $(this).attr("src");
 				currentImageIndex = $(this).attr("index");
-						
+
 				bigImage.attr("src", currentImageSource);
 				bigImage.attr("index", currentImageIndex);
-			
+
 			});
-			bigImage.on("click", function(){
+			bigImage.on("click", function () {
 				$("#carouselModal").modal("show");
 				imageIndex = parseInt(bigImage.attr("index"));
 				$("#carouselExampleIndicators").carousel(imageIndex);

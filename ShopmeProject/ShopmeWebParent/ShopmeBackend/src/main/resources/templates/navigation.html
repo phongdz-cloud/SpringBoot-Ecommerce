@@ -28,7 +28,8 @@
 
 					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/categories}">Categories</a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/categories}">Categories</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/categories/new}">Create New</a>
 								<a class="dropdown-item" th:href="@{/categories}">View All</a>
@@ -48,7 +49,8 @@
 
 					<th:block sec:authorize="hasAnyAuthority('Admin','Salesperson', 'Editor','Shipper')">
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/products}">Products</a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown"
+								th:href="@{/products}">Products</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" th:href="@{/products/new}">Create New</a>
 								<a class="dropdown-item" th:href="@{/products}">View All</a>
@@ -93,8 +95,17 @@
 					</th:block>
 
 
-					<li class="nav-item" sec:authorize="hasAuthority('Admin')">
-						<a class="nav-link" th:href="@{/settings}">Settings</a>
+					<li class="nav-item dropdown" sec:authorize="hasAuthority('Admin')">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/settings}">Settings</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" th:href="@{/settings#general}">General</a>
+							<a class="dropdown-item" th:href="@{/settings#countries}">Countries</a>
+							<a class="dropdown-item" th:href="@{/settings#states}">States</a>
+							<a class="dropdown-item" th:href="@{/settings#mailServer}">Mail Server</a>
+							<a class="dropdown-item" th:href="@{/settings#mailTemplate}">Mail Template</a>
+							<a class="dropdown-item" th:href="@{/settings#payment}">Payment</a>
+						</div>
+
 					</li>
 
 					<li>

@@ -4,7 +4,7 @@
 <head th:fragment="page_head(title,remove)" th:remove="${remove}">
 	<meta http-quiv="Content-Type" context="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,intial-scale=1.0, minimum-scale=1.0">
-	<title>[[${title}]]</title>
+	<title>[[${title}]] - [[${SITE_NAME}]]</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
