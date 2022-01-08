@@ -1,10 +1,10 @@
 package com.shopme.common.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +25,11 @@ public class Country {
 	@Column(nullable = false, length = 5)
 	private String code;
 
-	@OneToMany(mappedBy = "country")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "country")
 	private Set<State> states;
+
+	@OneToMany(mappedBy = "country")
+	private Set<Customer> customers;
 
 	public Country() {
 	}
@@ -68,6 +71,14 @@ public class Country {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public Set<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(Set<Customer> customers) {
+		this.customers = customers;
 	}
 
 	@Override

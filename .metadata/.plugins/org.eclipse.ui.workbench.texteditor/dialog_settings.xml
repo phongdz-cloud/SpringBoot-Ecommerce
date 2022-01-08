@@ -6,8 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Details"/>
+		<item key="selection" value="buttonLoad"/>
 		<list key="findhistory">
+			<item value="buttonLoad"/>
+			<item value="changeFormStateToNew"/>
+			<item value="change"/>
+			<item value="Change"/>
 			<item value="details"/>
 			<item value="#details"/>
 			<item value="40%"/>
@@ -19,10 +23,6 @@
 			<item value="numberOfExistingExtraImages"/>
 			<item value="lists"/>
 			<item value="Category"/>
-			<item value="save"/>
-			<item value="status"/>
-			<item value="brand.id"/>
-			<item value="search_form_and_message"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -2,6 +2,7 @@ package com.shopme.common.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ public class State {
 	@Column(nullable = false, length = 45)
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "country_id")
 	private Country country;
 
@@ -53,6 +54,8 @@ public class State {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+	
+	
 
 	@Override
 	public String toString() {

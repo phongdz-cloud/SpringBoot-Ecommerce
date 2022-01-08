@@ -21,10 +21,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shopme.common.entity.Country;
 import com.shopme.common.entity.State;
+import com.shopme.common.entity.StateDTO;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@WithMockUser(username = "nam@codejava.net", password = "something", roles = "ADMIN")
 public class StateRestControllerTests {
 
 	@Autowired
@@ -37,6 +37,7 @@ public class StateRestControllerTests {
 	private ObjectMapper objectMapper;
 
 	@Test
+	@WithMockUser(username = "nam@codejava.net", password = "namhm2020", roles = "ADMIN")
 	public void testListByCountries() throws Exception {
 		Country countryById = entityManager.find(Country.class, 4);
 		String url = "/states/list_by_country/" + countryById.getId();

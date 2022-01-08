@@ -37,7 +37,7 @@ public class CountryRestControllerTests {
 	private CountryRepository repo;
 
 	@Test
-	@WithMockUser(username = "nam@codejava.net", password = "something", roles = "ADMIN")
+	@WithMockUser(username = "nam@codejava.net", password = "namhm2020", roles = "ADMIN")
 	public void testListCountries() throws Exception {
 		String url = "/countries/list";
 		MvcResult result = mockMvc.perform(get(url)).andExpect(status().isOk()).andDo(print()).andReturn();
