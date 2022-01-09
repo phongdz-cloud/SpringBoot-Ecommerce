@@ -37,13 +37,13 @@ public class Customer {
 	@Column(name = "address_line1", nullable = false, length = 64)
 	private String addressLine1;
 
-	@Column(name = "address_line2", length = 64)
+	@Column(name = "address_line_2", length = 64)
 	private String addressLine2;
 
 	@Column(nullable = false, length = 45)
 	private String city;
 
-	@Column(nullable = false, length = 45)
+	@Column(length = 45)
 	private String state;
 
 	@ManyToOne
@@ -56,10 +56,9 @@ public class Customer {
 	@Column(name = "created_time", nullable = false)
 	private Date createdTime;
 
-	@Column(nullable = false)
-	private Boolean enabled;
+	private boolean enabled;
 
-	@Column(name = "verification_code" , length = 64)
+	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
 
 	public Customer() {
@@ -188,11 +187,11 @@ public class Customer {
 		this.createdTime = createdTime;
 	}
 
-	public Boolean getEnabled() {
+	public boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -203,7 +202,7 @@ public class Customer {
 	public void setVerificationCode(String verificationCode) {
 		this.verificationCode = verificationCode;
 	}
-	
+
 	public String getFullName() {
 		return firstName + " " + lastName;
 	}
