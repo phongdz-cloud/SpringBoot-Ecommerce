@@ -81,6 +81,10 @@ public class Product {
 	public Product() {
 	}
 
+	public Product(Integer id) {
+		this.id = id;
+	}
+
 	public Product(Integer id, String name) {
 		this.id = id;
 		this.name = name;
@@ -290,18 +294,19 @@ public class Product {
 		}
 		return false;
 	}
+
 	@Transient
 	public String getShortName() {
-		if(name.length() > 70) {
-			return name.substring(0,70).concat("...");
+		if (name.length() > 70) {
+			return name.substring(0, 70).concat("...");
 		}
 		return name;
 	}
-	
+
 	@Transient
 	public float getDiscountPrice() {
-		if(discountPercent > 0) {
-			return price * ((100 - discountPercent)/100);
+		if (discountPercent > 0) {
+			return price * ((100 - discountPercent) / 100);
 		}
 		return this.price;
 	}

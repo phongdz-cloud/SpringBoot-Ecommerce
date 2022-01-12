@@ -1,0 +1,13 @@
+$(document).ready(function(){
+	$("#buttonAdd2Cart").on("click",function(evt){
+		evt.preventDefault();
+		addToCart();
+	});
+});
+
+function addToCart(){
+	quantity = $("#quantity" + productId).val();
+	url = cointextPath + "cart/add/"+productId + "/" + quantity;
+	
+	alert(url);	
+}

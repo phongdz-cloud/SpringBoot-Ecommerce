@@ -1,0 +1,11 @@
+$(document).readt(function(){
+	$(".linkMinus").on("click",function(){
+		e.preventDefault();
+		alert("clicked minus");
+	});
+	
+		$(".linkPlus").on("click",function(){
+		e.preventDefault();
+		alert("clicked plus");
+	});
+});

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CartItemRepositoryTests.testSaveItem" project="ShopmeFrontEnd" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.shopme.shoppingcart.CartItemRepositoryTests" time="0.505" displayname="CartItemRepositoryTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.shoppingcart.CartItemRepositoryTests]">
+    <testcase name="testSaveItem" classname="com.shopme.shoppingcart.CartItemRepositoryTests" time="0.505" displayname="testSaveItem()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.shoppingcart.CartItemRepositoryTests]/[method:testSaveItem()]"/>
+  </testsuite>
+</testrun>

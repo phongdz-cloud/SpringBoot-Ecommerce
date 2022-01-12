@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head th:replace="fragments :: page_head('Shopping Cart', 'none')" />
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: header_menu"></div>
+		<div th:replace="navigation :: search_nav"></div>
+		<div class="text-center">
+			<h2>Your Shopping Cart</h2>
+		</div>
+
+
+		<div th:replace="navigation :: footer_menu"></div>
+	</div>
+</body>
+
+</html>

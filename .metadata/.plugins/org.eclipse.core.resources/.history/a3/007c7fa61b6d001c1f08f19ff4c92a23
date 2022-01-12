@@ -1,7 +1,0 @@
-package com.shopme.category;
-
-import org.springframework.data.repository.CrudRepository;
-
-interface CategoryRepository extends CrudRepository<Category, Integer> {
-
-}

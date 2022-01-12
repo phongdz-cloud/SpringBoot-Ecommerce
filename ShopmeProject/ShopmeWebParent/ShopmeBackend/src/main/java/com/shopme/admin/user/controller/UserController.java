@@ -34,16 +34,15 @@ public class UserController {
 	private UserService service;
 
 	@GetMapping("/users")
-	public String listFirstPage() {
+	public String listFirstPage(Model model) {
 		return "redirect:/users/page/1?sortField=firstName&sortDir=asc";
 	}
 
 	@GetMapping("/users/page/{pageNumber}")
 	public String listByPage(
 			@PagingAndSortingParam(listName = "listUsers", moduleURL ="/users") PagingAndSortingHelper helper,
-			@PathVariable(name = "pageNumber") int pageNum) {
+			@PathVariable(name = "pageNumber") int pageNum, Model model) {
 		service.listByPage(pageNum,helper);
-		
 		
 		return "users/users";
 	}

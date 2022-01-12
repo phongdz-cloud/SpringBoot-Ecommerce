@@ -46,10 +46,9 @@ public class ProductController {
 	@GetMapping("/products/page/{pageNumber}")
 	public String listByPage(
 			@PagingAndSortingParam(listName = "listProducts", moduleURL = "/products") PagingAndSortingHelper helper,
-			@PathVariable(name = "pageNumber") int pageNum, Model model, @Param("categoryId") Integer categoryId) {
+			@PathVariable(name = "pageNumber") int pageNum, Model model, Integer categoryId) {
 		productService.listByPage(pageNum, helper, categoryId);
 		List<Category> listCategories = categoryService.listCategoriesUserdInForm();
-
 		if (categoryId != null) {
 			model.addAttribute("categoryId", categoryId);
 		}
@@ -89,7 +88,7 @@ public class ProductController {
 			if(loggedUser.hasRole("Salesperson")) {
 				productService.saveProductPrice(product);
 				ra.addFlashAttribute("message", "The product has been saved successfully.");
-				return "redirect:/products";
+				return "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
 			}
 		}
 		ProductSaveHelper.setMainImageName(mainImageMultipart, product);
@@ -100,7 +99,7 @@ public class ProductController {
 		ProductSaveHelper.savedUploadedImages(mainImageMultipart, extraImageMultiparts, savedProduct);
 		ProductSaveHelper.deleteExtraImagesWeredRemoveOnForm(product);
 		ra.addFlashAttribute("message", "The product has been saved successfully.");
-		return "redirect:/products";
+		return "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
 	}
 
 	@GetMapping("/products/{id}/enabled/{status}")
@@ -130,11 +129,23 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/edit/{id}")
-	public String editProduct(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+	public String editProduct(@PathVariable("id") Integer id, Model model, 
+			RedirectAttributes ra,
+			@AuthenticationPrincipal ShopmeUserDetails loggedUser) {
 		try {
 			Product product = productService.get(id);
 			List<Brand> listBrands = brandService.listAll();
 			Integer numberOfExistingExtraImages = product.getImages().size();
+			
+			boolean isReadOnlyForSalesperson = false;
+			
+			if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+				if(loggedUser.hasRole("Salesperson")) {
+					isReadOnlyForSalesperson = true;
+					
+				}
+			}
+			model.addAttribute("isReadOnlyForSalesperson", isReadOnlyForSalesperson);
 			model.addAttribute("product", product);
 			model.addAttribute("listBrands", listBrands);
 			model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");

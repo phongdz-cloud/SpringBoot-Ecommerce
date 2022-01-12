@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="buttonLoad"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="main"/>
+			<item value="pagination"/>
+			<item value="page_link"/>
+			<item value="search_form"/>
+			<item value="delete"/>
+			<item value="enabled"/>
+			<item value="linkDetailURL"/>
 			<item value="buttonLoad"/>
 			<item value="changeFormStateToNew"/>
 			<item value="change"/>
@@ -16,13 +23,6 @@
 			<item value="#details"/>
 			<item value="40%"/>
 			<item value="Name"/>
-			<item value="page_link"/>
-			<item value="pagination"/>
-			<item value="search_form"/>
-			<item value="numberOfExistingExtraImages + 1"/>
-			<item value="numberOfExistingExtraImages"/>
-			<item value="lists"/>
-			<item value="Category"/>
 		</list>
 		<list key="replacehistory">
 		</list>

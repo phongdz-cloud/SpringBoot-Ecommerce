@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,26 +63,18 @@ public class Customer {
 	@Column(name = "verification_code", length = 64)
 	private String verificationCode;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "authentication_type", length = 10)
+	private AuthenticationType authenticationType;
+
+	@Column(name = "rest_password_token", length = 30)
+	private String restPasswordToken;
+
 	public Customer() {
 	}
 
-	public Customer(String email, String password, String firstName, String lastName, String phoneNumber,
-			String addressLine1, String addressLine2, String city, String state, Country country, String postalCode,
-			Date createdTime, Boolean enabled, String verificationCode) {
-		this.email = email;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.addressLine1 = addressLine1;
-		this.addressLine2 = addressLine2;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.postalCode = postalCode;
-		this.createdTime = createdTime;
-		this.enabled = enabled;
-		this.verificationCode = verificationCode;
+	public Customer(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getId() {
@@ -205,6 +199,22 @@ public class Customer {
 
 	public String getFullName() {
 		return firstName + " " + lastName;
+	}
+
+	public AuthenticationType getAuthenticationType() {
+		return authenticationType;
+	}
+
+	public void setAuthenticationType(AuthenticationType authenticationType) {
+		this.authenticationType = authenticationType;
+	}
+
+	public String getRestPasswordToken() {
+		return restPasswordToken;
+	}
+
+	public void setRestPasswordToken(String restPasswordToken) {
+		this.restPasswordToken = restPasswordToken;
 	}
 
 	@Override
