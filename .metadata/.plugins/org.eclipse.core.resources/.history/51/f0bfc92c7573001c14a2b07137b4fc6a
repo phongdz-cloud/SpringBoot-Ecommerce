@@ -1,0 +1,19 @@
+package com.shopme.admin.shipping;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.shopme.common.entity.ShippingRate;
+
+public interface ShippingRateRepository extends PagingAndSortingRepository<ShippingRate, Integer> {
+
+	@Query("SELECT sr FROM ShippingRate sr WHERE sr.country.id = ?1 AND sr.state = ?2")
+	public List<ShippingRate> findByCountryAndState(Integer countryId, String state);
+	
+	public Long countById(Integer id);
+	
+	@Query("UPDATE FROM ShippingRate s SET s.codSupported = ?2 WHERE s.id = ?1")
+	public void updateCODSupport(Integer id, boolean enabled);
+}

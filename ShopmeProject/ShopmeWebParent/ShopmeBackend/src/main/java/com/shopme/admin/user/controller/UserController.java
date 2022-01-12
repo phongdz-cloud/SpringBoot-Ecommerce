@@ -29,13 +29,13 @@ import com.shopme.common.entity.User;
 
 @Controller
 public class UserController {
-
+	private String defaultRedirectURL = "redirect:/users/page/1?sortField=firstName&sortDir=asc";
 	@Autowired
 	private UserService service;
 
 	@GetMapping("/users")
 	public String listFirstPage(Model model) {
-		return "redirect:/users/page/1?sortField=firstName&sortDir=asc";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/page/{pageNumber}")
@@ -56,7 +56,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("listRoles", listRoles);
 		model.addAttribute("pageTitle", "Create New User");
-		return "users/user_form";
+		return defaultRedirectURL;
 	}
 
 	@PostMapping("/users/save")
@@ -96,7 +96,7 @@ public class UserController {
 			return "users/user_form";
 		} catch (UserNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/users";
+			return defaultRedirectURL;
 		}
 
 	}
@@ -110,7 +110,7 @@ public class UserController {
 		} catch (UserNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 		}
-		return "redirect:/users";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/{id}/enabled/{status}")
@@ -120,7 +120,7 @@ public class UserController {
 		String status = enabled ? "enabled" : "disabled";
 		String message = "The user ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
-		return "redirect:/users";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/users/export/csv")

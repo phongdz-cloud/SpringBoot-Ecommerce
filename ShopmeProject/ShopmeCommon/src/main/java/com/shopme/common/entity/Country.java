@@ -25,11 +25,14 @@ public class Country {
 	@Column(nullable = false, length = 5)
 	private String code;
 
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "country")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
 	private Set<State> states;
 
 	@OneToMany(mappedBy = "country")
 	private Set<Customer> customers;
+
+	@OneToMany(mappedBy = "country")
+	private Set<ShippingRate> shippingRate;
 
 	public Country() {
 	}
@@ -79,6 +82,14 @@ public class Country {
 
 	public void setCustomers(Set<Customer> customers) {
 		this.customers = customers;
+	}
+
+	public Set<ShippingRate> getShippingRate() {
+		return shippingRate;
+	}
+
+	public void setShippingRate(Set<ShippingRate> shippingRate) {
+		this.shippingRate = shippingRate;
 	}
 
 	@Override

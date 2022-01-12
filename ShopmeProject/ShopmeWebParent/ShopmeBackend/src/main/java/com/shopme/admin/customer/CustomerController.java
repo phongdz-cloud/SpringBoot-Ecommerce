@@ -18,12 +18,13 @@ import com.shopme.common.exception.CustomerNotFoundException;
 
 @Controller
 public class CustomerController {
+	private String defaultRedirectURL = "redirect:/customers/page/1?sortField=firstName&sortDir=asc";
 	@Autowired
 	private CustomerService customerService;
 
 	@GetMapping("/customers")
 	public String listFirstPage(Model model) {
-		return "redirect:/customers/page/1?sortField=firstName&sortDir=asc";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/customers/page/{pageNumber}")
@@ -42,7 +43,7 @@ public class CustomerController {
 		String status = enabled ? "enabled" : "disabled";
 		String message = "The customer ID " + id + " has been " + status;
 		redirectAttributes.addFlashAttribute("message", message);
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/customers/edit/{id}")
@@ -50,7 +51,6 @@ public class CustomerController {
 			RedirectAttributes redirectAttributes) {
 		try {
 			Customer customer = customerService.get(id);
-			System.out.println(customer.isEnabled());
 			List<Country> listCountries = customerService.listAllCountry();
 			model.addAttribute("customer", customer);
 			model.addAttribute("listCountries", listCountries);
@@ -59,7 +59,7 @@ public class CustomerController {
 			return "customers/customer_form";
 		} catch (CustomerNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/customers";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -71,7 +71,7 @@ public class CustomerController {
 			return "customers/customer_detail_modal";
 		} catch (CustomerNotFoundException e) {
 			ra.addFlashAttribute("message", e.getMessage());
-			return "redirect:/customers";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -83,13 +83,13 @@ public class CustomerController {
 		} catch (CustomerNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 		}
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 
 	@PostMapping("/customers/save")
 	public String saveCustomer(Customer customer, RedirectAttributes ra) {
 		customerService.save(customer);
 		ra.addFlashAttribute("message", "The customer has been updated successfully.");
-		return "redirect:/customers";
+		return defaultRedirectURL;
 	}
 }

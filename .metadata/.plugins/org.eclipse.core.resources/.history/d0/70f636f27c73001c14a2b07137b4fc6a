@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+
+<head th:replace="fragments :: page_head('Shipping Rates - Shopme Admin','none')">
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<div>
+			<h2>Manage Shipping Rates</h2>
+			<a th:href="@{/shipping/export/csv}" class="fas fa-file-csv fa-2x icon-dark  mr-2"></a>
+		</div>
+
+		<div th:replace="fragments :: search_form_and_message" />
+
+		<div class="full-details">
+			<table class="table table-bordered table-striped table-hover table-responsive-xl">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>Country</th>
+						<th>State</th>
+						<th>Rate</th>
+						<th>Days</th>
+						<th>COD Supported</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="shipping : ${listShippings}">
+						<td>[[${shipping.id}]]</td>
+						<td>[[${shipping.country.name}]]</td>
+						<td>[[${shipping.state}]]</td>
+						<td>[[${shipping.rate}]]</td>
+						<td>[[${shipping.days}]]</td>
+						<td>
+							<div>
+								<a th:if="${shipping.isCodSupported == true}"
+									class="fas fa-hand-holding-usd fa-2x icon-green"
+									th:href="@{${shipping} + '/enabled/false'}" th:title="'Disable this' + shipping ">
+								</a>
+								<a th:if="${shipping.isCodSupported == false}"
+									class="fas fa-hand-holding-usd fa-2x icon-dark"
+									th:href="@{${shipping} +'/enabled/true'}" th:title="'Enable this' + shipping "></a>
+							</div>
+						</td>
+						<td>
+							<div th:replace="fragments :: edit('shipping','/shipping/edit/' + ${shipping.id})"></div>
+							&nbsp;
+							<div
+								th:replace="fragments :: delete('shipping',${shipping.id},'/shipping/delete/' + ${shipping.id},true)">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div th:replace="fragments :: pagination('shipping')"></div>
+
+		<div th:replace="modal_fragments :: modal_dialog_delete"></div>
+
+		<div class="modal fade" id="detailModal">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content"></div>
+			</div>
+		</div>
+
+		<div th:replace="fragments :: footer"></div>
+	</div>
+	<script type="text/javascript">
+		url = "[[@{/shipping}]]";
+		nameId = "entityId";
+		nameTable = "shipping_rate";
+
+		$(document).ready(function () {
+			$(".link-detail").on("click", function (e) {
+				e.preventDefault();
+				linkDetailURL = $(this).attr("href");
+				$("#detailModal").modal("show").find(".modal-content").load(linkDetailURL);
+			});
+		});
+	</script>
+	<script th:src="@{/js/common_list.js}"></script>
+</body>
+
+</html>

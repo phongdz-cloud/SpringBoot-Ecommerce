@@ -1,0 +1,30 @@
+package com.shopme.admin.shipping;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.paging.PagingAndSortingParam;
+
+@Controller
+public class ShippingRateController {
+	@Autowired
+	private ShippingRateService service;
+	
+	@GetMapping("/shipping")
+	public String listFirstPage(Model model) {
+		return "redirect:/shipping/page/1?sortField=name&sortDir=asc";
+	}
+
+	@GetMapping("/shipping/page/{pageNumber}")
+	public String listByPage(
+			@PagingAndSortingParam(listName = "listShippings", moduleURL = "/shipping") PagingAndSortingHelper helper,
+			@PathVariable(name = "pageNumber") int pageNum) {
+		service.listByPage(pageNum, helper);
+
+		return "shipping/shipping_rates";
+	}
+}

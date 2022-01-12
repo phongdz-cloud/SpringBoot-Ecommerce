@@ -1,0 +1,37 @@
+package com.shopme.admin.shipping;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.paging.SearchRepository;
+import com.shopme.admin.setting.country.CountryRepository;
+import com.shopme.common.entity.ShippingRate;
+
+@Service
+@Transactional
+public class ShippingRateService {
+
+	public static final int SHIPPINGS_PER_PAGE = 10;
+
+	@Autowired
+	private ShippingRateRepository shipRepo;
+
+	@Autowired
+	private CountryRepository countryRepo;
+
+	public List<ShippingRate> listAll() {
+		System.out.println("Code ALIVE!");
+		return (List<ShippingRate>) shipRepo.findAll(Sort.by("country.name").ascending());
+	}
+
+	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+		helper.listEntities(pageNum, SHIPPINGS_PER_PAGE, shipRepo);
+	}
+
+}

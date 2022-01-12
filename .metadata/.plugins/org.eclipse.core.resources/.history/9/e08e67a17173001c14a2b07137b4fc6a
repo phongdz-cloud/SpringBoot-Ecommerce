@@ -1,0 +1,37 @@
+package com.shopme.admin.shipping;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
+
+import com.shopme.common.entity.Country;
+import com.shopme.common.entity.ShippingRate;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class ShippingRateRepositoryTests {
+	@Autowired
+	private ShippingRateRepository repo;
+	@Autowired
+	private TestEntityManager entityManager;
+	
+	@Test
+	public void testCreateNew() {
+		ShippingRate shippingRate = new ShippingRate();
+		Country country = entityManager.find(Country.class, 14);
+		shippingRate.setCountry(country);
+		shippingRate.setCodSupported(true);
+		shippingRate.setRate(12.5F);
+		shippingRate.setDays(7);
+		shippingRate.setState("Queensland");
+		ShippingRate savedShippingRate = repo.save(shippingRate);
+		assertThat(shippingRate).isNotNull();
+	}
+}

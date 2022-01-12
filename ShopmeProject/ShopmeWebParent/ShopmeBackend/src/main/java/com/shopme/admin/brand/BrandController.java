@@ -23,6 +23,8 @@ import com.shopme.common.entity.Category;
 
 @Controller
 public class BrandController {
+	private String defaultRedirectURL = "redirect:/brands/page/1?sortField=name&sortDir=asc";
+	
 	@Autowired
 	private BrandService brandService;
 
@@ -31,7 +33,7 @@ public class BrandController {
 
 	@GetMapping("/brands")
 	public String listFirstPage() {
-		return "redirect:/brands/page/1?sortField=name&sortDir=asc";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/brands/page/{pageNumber}")
@@ -67,7 +69,7 @@ public class BrandController {
 			brandService.save(brand);
 		}
 		ra.addFlashAttribute("message", "The brand has been saved successfully.");
-		return "redirect:/brands";
+		return defaultRedirectURL;
 	}
 
 	@GetMapping("/brands/edit/{id}")
@@ -82,7 +84,7 @@ public class BrandController {
 			return "brands/brand_form";
 		} catch (BrandNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
-			return "redirect:/brands";
+			return defaultRedirectURL;
 		}
 	}
 
@@ -97,7 +99,7 @@ public class BrandController {
 		} catch (BrandNotFoundException e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
 		}
-		return "redirect:/brands";
+		return defaultRedirectURL;
 	}
 
 }
