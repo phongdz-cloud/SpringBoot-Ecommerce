@@ -1,7 +1,0 @@
-package com.shopme.admin.shipping;
-
-import org.springframework.data.repository.PagingAndSortingRepository;
-
-public interface ShippingRateRepository extends PagingAndSortingRepository<T, ID> {
-
-}

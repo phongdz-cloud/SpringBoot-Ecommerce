@@ -1,7 +1,0 @@
-package com.shopme.admin.setting.state;
-
-public enum StateDTO {
-	private Integer id;
-	private String name;
-
-}

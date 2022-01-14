@@ -1,7 +1,0 @@
-package com.shopme.admin.customer;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface CustomerRepository extends CrudRepository<T, ID> {
-
-}

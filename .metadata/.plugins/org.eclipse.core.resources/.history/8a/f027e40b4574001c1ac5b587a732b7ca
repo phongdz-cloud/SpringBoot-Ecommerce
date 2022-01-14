@@ -1,9 +1,0 @@
-package com.shopme.common.entity;
-
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "order_details")
-public class OrderDetail {
-
-}

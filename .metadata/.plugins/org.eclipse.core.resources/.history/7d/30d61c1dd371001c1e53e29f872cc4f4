@@ -1,7 +1,0 @@
-package com.shopme.security.oauth;
-
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-
-public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
-
-}
