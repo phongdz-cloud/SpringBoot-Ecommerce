@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AddressRepositoryTests.testFindByCustomer" project="ShopmeFrontEnd" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.shopme.address.AddressRepositoryTests" time="0.305" displayname="AddressRepositoryTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.address.AddressRepositoryTests]">
+    <testcase name="testFindByCustomer" classname="com.shopme.address.AddressRepositoryTests" time="0.305" displayname="testFindByCustomer()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.address.AddressRepositoryTests]/[method:testFindByCustomer()]"/>
+  </testsuite>
+</testrun>

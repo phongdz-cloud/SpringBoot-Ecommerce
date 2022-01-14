@@ -56,7 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/account_details","/update_account_details","/cart").authenticated()
+				.antMatchers("/account_details","/update_account_details","/cart",
+										"/address_book/**").authenticated()
 				.anyRequest().permitAll()
 				.and()
 				.formLogin()
@@ -73,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						.successHandler(oAuth2LoginHandler)
 				.and()
 				.logout().permitAll()
-				.and()
+				.and() 
 				.rememberMe()
 					.key("AbcDefgHijKlmnOpqrs_1234567890")
 					.tokenValiditySeconds(14 * 24 * 60 * 60)

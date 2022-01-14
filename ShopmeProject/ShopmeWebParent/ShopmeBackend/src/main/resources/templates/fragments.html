@@ -27,7 +27,6 @@
 			<span>No [[${entityName}]] found</span>
 		</div>
 
-
 		<div th:if="${totalPages > 1}">
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
@@ -56,25 +55,20 @@
 
 	<div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
 		<a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"
-			th:href="@{${entityURL} + '/enabled/false'}"
-			th:title="'Disable this' + ${entityName} ">		
-			</a>
-		<a th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark"
-			th:href="@{${entityURL} +'/enabled/true'}" 
+			th:href="@{${entityURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName} ">
+		</a>
+		<a th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark" th:href="@{${entityURL} +'/enabled/true'}"
 			th:title="'Enable this' + ${entityName} "></a>
 	</div>
 
 	<div th:fragment="edit(entityName, editURL)" th:remove="tag">
-		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" 
-			th:title="'Edit this' + ${entityName}"></a>
+		<a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}" th:title="'Edit this' + ${entityName}"></a>
 	</div>
-	
+
 	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
 		<th:block th:if="${visible }">
-		<a class="fa fa-trash fa-2x icon-dark link-delete"
-			th:href="@{${deleteURL}}"
-			th:entityId="${entityId}" 
-			th:title="'Delete this ' + ${entityName}"></a>
+			<a class="fa fa-trash fa-2x icon-dark link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
+				th:title="'Delete this ' + ${entityName}"></a>
 		</th:block>
 	</div>
 
@@ -119,10 +113,29 @@
 				<i class="fas fa-eraser"></i>
 			</button>
 		</form>
-		
+
 		<div th:if="${message != null}" class="alert alert-success text-center">
 			[[${message}]]
 		</div>
+	</div>
+
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+	</div>
+
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span>[[${#numbers.formatDecimal(amount,
+			1,
+			THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
+			th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input class="form-control" type="text" th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+			th:value="${CURRENCY_SYMBOL} + ${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}" readonly= />
+		<input class="form-control" type="text" th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}"
+			th:value="${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)} + ${CURRENCY_SYMBOL}" readonly= />
 	</div>
 
 </body>

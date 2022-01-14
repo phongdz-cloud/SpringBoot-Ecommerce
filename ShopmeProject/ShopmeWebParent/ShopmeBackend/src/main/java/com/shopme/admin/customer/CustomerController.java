@@ -45,7 +45,7 @@ public class CustomerController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return defaultRedirectURL;
 	}
-
+	
 	@GetMapping("/customers/edit/{id}")
 	public String editCustomer(@PathVariable(name = "id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {

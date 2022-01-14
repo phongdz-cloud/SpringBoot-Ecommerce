@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.shopme.common.entity.Product;
+import com.shopme.common.entity.product.Product;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)

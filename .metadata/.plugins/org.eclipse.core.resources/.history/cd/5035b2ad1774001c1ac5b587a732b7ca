@@ -1,0 +1,9 @@
+package com.shopme.address;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.shopme.common.entity.Address;
+
+public interface AddressRepository extends CrudRepository<Address, Integer> {
+
+}

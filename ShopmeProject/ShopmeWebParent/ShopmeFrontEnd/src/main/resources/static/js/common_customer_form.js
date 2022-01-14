@@ -13,6 +13,7 @@ $(document).ready(function() {
 });
 
 function loadStatesForCountry() {
+	
 	selectedCountry = $("#country option:selected");
 	countryId = selectedCountry.val();
 	url = contextPath + "settings/list_states_by_country/" + countryId;

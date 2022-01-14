@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AddressRepositoryTests.testAddNew" project="ShopmeFrontEnd" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.shopme.address.AddressRepositoryTests" time="0.106" displayname="AddressRepositoryTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.address.AddressRepositoryTests]">
+    <testcase name="testAddNew" classname="com.shopme.address.AddressRepositoryTests" time="0.106" displayname="testAddNew()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.address.AddressRepositoryTests]/[method:testAddNew()]"/>
+  </testsuite>
+</testrun>

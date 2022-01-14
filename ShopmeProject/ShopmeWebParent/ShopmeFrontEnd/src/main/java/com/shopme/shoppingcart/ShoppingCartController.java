@@ -39,7 +39,6 @@ public class ShoppingCartController {
 
 	private Customer getAuthenticatedCustomer(HttpServletRequest request) throws CustomerNotFoundException {
 		String email = Utility.getEmailOfAuthenticatedCustomer(request);
-
 		return customerService.getCustomerByEmail(email);
 	}
 }

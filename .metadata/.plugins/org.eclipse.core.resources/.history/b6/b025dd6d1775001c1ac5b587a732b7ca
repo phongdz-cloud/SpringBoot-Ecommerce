@@ -1,0 +1,21 @@
+package com.shopme.common.entity;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public class AbstractAddressWithCountry extends AbstractAddress {
+	@ManyToOne
+	@JoinColumn(name = "country_id")
+	private Country country;
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+}

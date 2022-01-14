@@ -32,6 +32,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
+	private boolean isRedirect = false;
+
 	@Autowired
 	private SettingService settingService;
 
@@ -83,7 +85,6 @@ public class CustomerController {
 
 		mailSender.send(message);
 
-
 	}
 
 	@GetMapping("/verify")
@@ -94,36 +95,42 @@ public class CustomerController {
 	}
 
 	@GetMapping("/account_details")
-	public String viewAccountDetails(Model model, HttpServletRequest request) {
+	public String viewAccountDetails(Model model,
+			HttpServletRequest request) {
 		String email = Utility.getEmailOfAuthenticatedCustomer(request);
 		Customer customer = customerService.getCustomerByEmail(email);
 		List<Country> listCountries = customerService.listAllCountries();
-
+		String redirect = request.getParameter("redirect");
+		if (redirect != null) {
+			isRedirect = true;
+		}
 		model.addAttribute("customer", customer);
 		model.addAttribute("listCountries", listCountries);
+
 		return "customer/account_form";
 	}
-
-	
 
 	@PostMapping("/update_account_details")
 	public String updateAccountDetails(Model model, Customer customer, RedirectAttributes ra,
 			HttpServletRequest request) {
 		customerService.update(customer);
-
 		ra.addFlashAttribute("message", "Your account details have been updated.");
-		updateNameForAuthenticatedCustomer(customer,request);
+		if (isRedirect) {
+			isRedirect = false;
+			return "redirect:/address_book";
+		}
+
+		updateNameForAuthenticatedCustomer(customer, request);
 		return "redirect:/account_details";
 	}
 
 	private void updateNameForAuthenticatedCustomer(Customer customer, HttpServletRequest request) {
 		Object principal = request.getUserPrincipal();
-		
-		
+
 		if (principal instanceof UsernamePasswordAuthenticationToken
 				|| principal instanceof RememberMeAuthenticationToken) {
 			CustomerUserDetails userDetails = getCustomerUserDetailsObject(principal);
-			Customer authenticatedCustomer= userDetails.getCustomer();
+			Customer authenticatedCustomer = userDetails.getCustomer();
 			authenticatedCustomer.setFirstName(customer.getFirstName());
 			authenticatedCustomer.setLastName(customer.getLastName());
 		} else if (principal instanceof OAuth2AuthenticationToken) {
@@ -133,18 +140,18 @@ public class CustomerController {
 			oauth2User.setFullName(fullName);
 		}
 	}
-	
+
 	private CustomerUserDetails getCustomerUserDetailsObject(Object principal) {
 		CustomerUserDetails userDetails = null;
 		if (principal instanceof UsernamePasswordAuthenticationToken) {
-			UsernamePasswordAuthenticationToken token =  (UsernamePasswordAuthenticationToken) principal;
+			UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) principal;
 			userDetails = (CustomerUserDetails) token.getPrincipal();
-		} else if(principal instanceof RememberMeAuthenticationToken){
+		} else if (principal instanceof RememberMeAuthenticationToken) {
 			RememberMeAuthenticationToken token = (RememberMeAuthenticationToken) principal;
 			userDetails = (CustomerUserDetails) token.getPrincipal();
 		}
-		
+
 		return userDetails;
 	}
-	
+
 }

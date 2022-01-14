@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ShippingRateRepositoryTests.testCreate2New" project="ShopmeBackend" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.shopme.admin.shipping.ShippingRateRepositoryTests" time="0.307" displayname="ShippingRateRepositoryTests" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.shipping.ShippingRateRepositoryTests]">
-    <testcase name="testCreate2New" classname="com.shopme.admin.shipping.ShippingRateRepositoryTests" time="0.307" displayname="testCreate2New()" uniqueid="[engine:junit-jupiter]/[class:com.shopme.admin.shipping.ShippingRateRepositoryTests]/[method:testCreate2New()]"/>
-  </testsuite>
-</testrun>

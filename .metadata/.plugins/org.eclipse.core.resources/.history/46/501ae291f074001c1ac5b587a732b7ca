@@ -1,0 +1,33 @@
+package com.shopme.admin.order;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.shopme.admin.paging.PagingAndSortingHelper;
+import com.shopme.admin.setting.SettingRepository;
+import com.shopme.common.entity.Order;
+import com.shopme.common.entity.Setting;
+
+@Service
+@Transactional
+public class OrderService {
+	public static final int ORDERS_PER_PAGE = 10;
+	@Autowired
+	private OrderRepository orderRepo;
+	
+	@Autowired
+	private SettingRepository settingRepo;
+
+	public List<Order> listAll() {
+		return (List<Order>) orderRepo.findAll(Sort.by("orderTime").descending());
+	}
+
+	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+		helper.listEntities(pageNum, ORDERS_PER_PAGE, orderRepo);
+	}
+	
+}

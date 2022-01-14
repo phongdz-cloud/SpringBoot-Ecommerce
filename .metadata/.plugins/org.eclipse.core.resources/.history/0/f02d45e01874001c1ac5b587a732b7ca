@@ -1,0 +1,45 @@
+package com.shopme.address;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
+
+import com.shopme.common.entity.Address;
+import com.shopme.common.entity.Country;
+import com.shopme.common.entity.Customer;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+@Rollback(false)
+public class AddressRepositoryTests {
+	@Autowired
+	private AddressRepository repo;
+	@Autowired
+	private TestEntityManager entityManager;
+
+	@Test
+	public void testAddNew() {
+		Integer countryId = 242;
+		Integer customerId = 1;
+		Country country = entityManager.find(Country.class, countryId);
+		Customer customer = entityManager.find(Customer.class, customerId);
+		Address address = new Address();
+		address.setCountry(country);
+		address.setCustomer(customer);
+		address.setFirstName("Thanh");
+		address.setLastName("Tuyen");
+		address.setPhoneNumber("0375489103");
+		address.setCity("Binh Thuan");
+		address.setState("Phan Thiet");
+		address.setAddressLine1("Phan Thiet");
+		address.setPostalCode("83");
+		Address savedAdress = repo.save(address);
+		assertThat(savedAdress).isNotNull();
+	}
+}

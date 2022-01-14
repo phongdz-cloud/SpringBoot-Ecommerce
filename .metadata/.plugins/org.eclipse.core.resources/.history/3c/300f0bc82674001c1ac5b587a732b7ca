@@ -1,0 +1,56 @@
+package com.shopme.address;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.shopme.Utility;
+import com.shopme.common.entity.Address;
+import com.shopme.common.entity.Country;
+import com.shopme.common.entity.Customer;
+import com.shopme.common.exception.CustomerNotFoundException;
+import com.shopme.customer.CustomerService;
+
+@Controller
+public class AddressController {
+	@Autowired
+	private AddressService addressService;
+	@Autowired
+	private CustomerService customerService;
+	
+	@GetMapping("/address_book")
+	public String showAddressBook(Model model, HttpServletRequest request) throws CustomerNotFoundException {
+		Customer customer = getAuthenticatedCustomer(request);
+		List<Address> listAddresses = addressService.listAddressBook(customer);
+		boolean usePrimaryAddessAsDefault = true;
+		for(Address address : listAddresses) {
+			if(address.isDefaultForShipping()) {
+				usePrimaryAddessAsDefault = false;
+				break;
+			}
+		}
+		
+		model.addAttribute("listAddresses",listAddresses);
+		model.addAttribute("customer",customer);
+		model.addAttribute("usePrimaryAddessAsDefault",usePrimaryAddessAsDefault);
+		return "address_book/addresses";
+	}
+	
+	@GetMapping("/address_book/new")
+	public String showFormAddressBook(Model model) {
+		List<Country> listCountries = addressService.listAllCountries();
+		model.addAttribute("address", new Address());
+		model.addAttribute(listCountries);
+		return "address_book/address_form";
+	}
+	
+	private Customer getAuthenticatedCustomer(HttpServletRequest request) throws CustomerNotFoundException {
+		String email = Utility.getEmailOfAuthenticatedCustomer(request);
+		return customerService.getCustomerByEmail(email);
+	}
+}
