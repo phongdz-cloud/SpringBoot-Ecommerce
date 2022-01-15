@@ -14,12 +14,13 @@
 		<div class="row m-1">
 			<div class="col-sm-8">
 				<th:block th:each="item, status : ${cartItems}">
-					<div class="row border rounded p-1" th:with="product = ${item.product}" th:id="'row' + ${status.count}">
+					<div class="row border rounded p-1" th:with="product = ${item.product}"
+						th:id="'row' + ${status.count}">
 						<div class="col-1">
 							<div class="divCount">[[${status.count}]]</div>
 							<div>
 								<a class="fas fa-trash linkRemove icon-dark" th:rowNumber="${status.count}"
-									 th:href="@{'/cart/remove/' + ${product.id}}"></a>
+									th:href="@{'/cart/remove/' + ${product.id}}"></a>
 							</div>
 						</div>
 						<divz class="col-3">
@@ -41,7 +42,8 @@
 							<div>
 								<span>=&nbsp;</span>
 								<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
-									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span th:id="'subtotal' + ${product.id}"
+									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span
+									th:id="'subtotal' + ${product.id}"
 									class="h4 subtotal">[[${#numbers.formatDecimal(item.subtotal,
 									1,
 									THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
@@ -67,12 +69,32 @@
 						th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 				</div>
 				<div class="mt-2">
-					<button class="btn btn-danger p-3 mt-2">Check Out</button>
+					<div>
+						<div th:if="${shippingSupported}">
+							<form th:action="@{/checkout}">
+								<button type="submit" class="btn btn-danger p-3 mt-2">Check Out</button>
+							</form>
+						</div>
+						<div th:unless="${shippingSupported}">
+							<div>
+								<span class="h5 text-warning">No shipping available for your location</span>
+
+								<div th:if="${usePrimaryAddressAsDefault}">
+									<a th:href="@{/account_details(redirect=cart)}" class="h6">Update your address</a>
+								</div>
+
+								<div th:unless="${usePrimaryAddressAsDefault}">
+									<a th:href="@{/address_book(redirect=cart)}" class="h6">Update another shipping
+										address</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div id="sectionEmptyCartMessage" th:class="'text-center ' + ${#lists.isEmpty(cartItems) ? '' : 'd-none'}" >
+		<div id="sectionEmptyCartMessage" th:class="'text-center ' + ${#lists.isEmpty(cartItems) ? '' : 'd-none'}">
 			<h3>You have not chosen any products yet.</h3>
 		</div>
 
@@ -83,11 +105,11 @@
 		contextPath = "[[@{/}]]";
 		var csrfHeaderName = "[[${_csrf.headerName}]]";
 		var csrfValue = "[[${_csrf.token}]]";
-		
+
 		decimalDigits = [[${DECIMAL_DIGITS}]];
 		decimalPointType = "[[${DECIMAL_POINT_TYPE}]]"
 		thousandsPointType = "[[${THOUSANDS_POINT_TYPE}]]"
-		
+
 	</script>
 	<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/shopping_cart.js}"></script>

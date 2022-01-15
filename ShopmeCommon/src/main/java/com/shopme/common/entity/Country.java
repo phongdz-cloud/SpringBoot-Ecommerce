@@ -19,7 +19,7 @@ public class Country extends IdBasedEntity{
 	@Column(nullable = false, length = 5)
 	private String code;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "country")
+	@OneToMany(mappedBy = "country")
 	private Set<State> states;
 
 	@OneToMany(mappedBy = "country")
@@ -66,29 +66,6 @@ public class Country extends IdBasedEntity{
 		this.code = code;
 	}
 
-	public Set<Customer> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(Set<Customer> customers) {
-		this.customers = customers;
-	}
-
-	public Set<ShippingRate> getShippingRate() {
-		return shippingRate;
-	}
-
-	public void setShippingRate(Set<ShippingRate> shippingRate) {
-		this.shippingRate = shippingRate;
-	}
-
-	public Set<Address> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
-	}
 
 	@Override
 	public String toString() {

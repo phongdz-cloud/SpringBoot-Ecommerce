@@ -6,6 +6,7 @@
 <body>
 	<div class="container-fluid">
 		<div th:replace="navigation :: header_menu"></div>
+		<div th:replace="navigation :: search_nav"></div>
 		<div>&nbsp;</div>
 
 		<div class="text-center">
@@ -17,6 +18,7 @@
 			style="max-width: 600px; margin: 0 auto">
 			<input type="hidden" th:field="*{id}" />
 			<input type="hidden" th:field="*{defaultForShipping}" />
+			<input type="hidden" name="redirect" th:value="${param.redirect}" />
 			<div class="border border-secondary rounded p-3">
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label">First Name:</label>

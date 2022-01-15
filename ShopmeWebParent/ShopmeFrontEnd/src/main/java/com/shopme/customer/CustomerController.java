@@ -32,8 +32,6 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	private boolean isRedirect = false;
-
 	@Autowired
 	private SettingService settingService;
 
@@ -95,15 +93,10 @@ public class CustomerController {
 	}
 
 	@GetMapping("/account_details")
-	public String viewAccountDetails(Model model,
-			HttpServletRequest request) {
+	public String viewAccountDetails(Model model, HttpServletRequest request) {
 		String email = Utility.getEmailOfAuthenticatedCustomer(request);
 		Customer customer = customerService.getCustomerByEmail(email);
 		List<Country> listCountries = customerService.listAllCountries();
-		String redirect = request.getParameter("redirect");
-		if (redirect != null) {
-			isRedirect = true;
-		}
 		model.addAttribute("customer", customer);
 		model.addAttribute("listCountries", listCountries);
 
@@ -115,13 +108,19 @@ public class CustomerController {
 			HttpServletRequest request) {
 		customerService.update(customer);
 		ra.addFlashAttribute("message", "Your account details have been updated.");
-		if (isRedirect) {
-			isRedirect = false;
-			return "redirect:/address_book";
+		updateNameForAuthenticatedCustomer(customer, request);
+		String redirectOption = request.getParameter("redirect");
+		String redirectURL = "redirect:/account_details";
+		
+		if ("address_book".equals(redirectOption)) {
+			redirectURL = "redirect:/address_book";
+		} else if ("cart".equals(redirectOption)) {
+			redirectURL = "redirect:/cart";
+		} else if("checkout".equals(redirectOption)) {
+			redirectURL = "redirect:/address_book?redirect=checkout";
 		}
 
-		updateNameForAuthenticatedCustomer(customer, request);
-		return "redirect:/account_details";
+		return redirectURL;
 	}
 
 	private void updateNameForAuthenticatedCustomer(Customer customer, HttpServletRequest request) {

@@ -60,13 +60,13 @@ public class AddressController {
 			Customer customer = getAuthenticatedCustomer(request);
 			Address address = addressService.get(id, customer.getId());
 			List<Country> listCountries = addressService.listAllCountries();
-			
-			model.addAttribute("address",address);
+
+			model.addAttribute("address", address);
 			model.addAttribute("listCountries", listCountries);
 		} catch (CustomerNotFoundException | AddressNotFoundException e) {
 			ra.addFlashAttribute("message", e.getMessage());
 			return "redirect:/address_book";
-		} 
+		}
 		return "address_book/address_form";
 	}
 
@@ -76,10 +76,18 @@ public class AddressController {
 		Customer customer = getAuthenticatedCustomer(request);
 		address.setCustomer(customer);
 		addressService.save(address);
+
+		String redirectOption = request.getParameter("redirect");
+		String redirectURL = "redirect:/address_book";
+
+		if ("checkout".equals(redirectOption)) {
+			redirectURL += "?redirect=checkout";
+		}
+
 		ra.addFlashAttribute("message", "The address has been saved successfully");
-		return "redirect:/address_book";
+		return redirectURL;
 	}
-	
+
 	@GetMapping("/address_book/delete/{id}")
 	public String deleteAddress(@PathVariable Integer id, RedirectAttributes ra, HttpServletRequest request) {
 		try {
@@ -91,14 +99,23 @@ public class AddressController {
 		}
 		return "redirect:/address_book";
 	}
-	
+
 	@GetMapping("/address_book/default/{id}")
-	public String setDefaultAddress(@PathVariable Integer id, RedirectAttributes ra,
-			HttpServletRequest request) throws CustomerNotFoundException {
+	public String setDefaultAddress(@PathVariable Integer id, RedirectAttributes ra, HttpServletRequest request)
+			throws CustomerNotFoundException {
 		Customer customer = getAuthenticatedCustomer(request);
 		addressService.setDefaultAddress(id, customer.getId());
-		
-		return "redirect:/address_book";
+
+		String redirectOption = request.getParameter("redirect");
+		String redirectURL = "redirect:/address_book";
+
+		if ("cart".equals(redirectOption)) {
+			redirectURL = "redirect:/cart";
+		} else if ("checkout".equals(redirectOption)) {
+			redirectURL = "redirect:/checkout";
+		}
+
+		return redirectURL;
 	}
 
 	private Customer getAuthenticatedCustomer(HttpServletRequest request) throws CustomerNotFoundException {

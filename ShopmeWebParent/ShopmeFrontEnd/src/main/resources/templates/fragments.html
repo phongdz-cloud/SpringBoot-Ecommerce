@@ -74,8 +74,8 @@
 
 	<div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
 		<th:block th:if="${visible }">
-			<a class="fas fa-trash  icon-dark float-right m-1 link-delete" th:href="@{${deleteURL}}" th:entityId="${entityId}"
-				th:title="'Delete this ' + ${entityName}"></a>
+			<a class="fas fa-trash  icon-dark float-right m-1 link-delete" th:href="@{${deleteURL}}"
+				th:entityId="${entityId}" th:title="'Delete this ' + ${entityName}"></a>
 		</th:block>
 	</div>
 
@@ -95,6 +95,14 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'Before price'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span><span>[[${#numbers.formatDecimal(amount,
+			1,
+			THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span><span
+			th:if="${CURRENCY_SYMBOL_POSITION == 'After price'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 	</div>
 
 

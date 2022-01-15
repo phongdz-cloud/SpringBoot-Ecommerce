@@ -99,6 +99,13 @@ public class AddressRepositoryTests {
 		Integer addressId = 2;
 		Integer customerId = 2;
 		repo.setNonDefaultForOthers(addressId, customerId);
-		
+	}
+	
+	@Test
+	public void testGetDefault() {
+		Integer customerId = 5;
+		Address address = repo.findDefaultByCustomer(customerId);
+		assertThat(address).isNotNull();
+		System.out.println(address);
 	}
 }

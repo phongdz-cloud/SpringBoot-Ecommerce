@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "shipping_rates")
-public class ShippingRate extends IdBasedEntity{
+public class ShippingRate extends IdBasedEntity {
 
 	@Column(nullable = false)
 	private Float rate;

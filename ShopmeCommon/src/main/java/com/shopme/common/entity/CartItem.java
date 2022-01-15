@@ -10,7 +10,7 @@ import com.shopme.common.entity.product.Product;
 
 @Entity
 @Table(name = "cart_items")
-public class CartItem extends IdBasedEntity{
+public class CartItem extends IdBasedEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
@@ -21,6 +21,9 @@ public class CartItem extends IdBasedEntity{
 	private Product product;
 
 	private int quantity;
+	
+	@Transient
+	private float shippingCost;
 
 	public CartItem() {
 	}
@@ -49,35 +52,25 @@ public class CartItem extends IdBasedEntity{
 		this.quantity = quantity;
 	}
 
+	@Transient
+	public float getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(float shippingCost) {
+		this.shippingCost = shippingCost;
+	}
+
 	@Override
 	public String toString() {
 		return "CartItem [" + (id != null ? "id=" + id + ", " : "")
 				+ (customer != null ? "customer=" + customer + ", " : "")
 				+ (product != null ? "product=" + product + ", " : "") + "quantity=" + quantity + "]";
 	}
-	
+
 	@Transient
 	public float getSubtotal() {
 		return product.getDiscountPrice() * quantity;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
