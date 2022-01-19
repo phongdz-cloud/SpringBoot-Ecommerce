@@ -50,6 +50,14 @@ public class ProductService {
 		helper.updateModelAttributes(pageNum, page);
 	}
 
+	public void searchProducts(int pageNum, PagingAndSortingHelper helper) {
+		Pageable pageable = helper.createPageable(PRODUCT_PER_PAGE, pageNum);
+		String keyword = helper.getKeyword();
+
+		Page<Product> page = repo.searchProductsByName(keyword, pageable);
+		helper.updateModelAttributes(pageNum, page);
+	}
+
 	public Product save(Product product) {
 		if (product.getId() == null) {
 			product.setCreatedTime(new Date());
@@ -113,6 +121,5 @@ public class ProductService {
 		} catch (NoSuchElementException ex) {
 			throw new ProductNotFoundException("Could not find any product with ID");
 		}
-
 	}
 }

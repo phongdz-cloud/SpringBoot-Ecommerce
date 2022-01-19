@@ -3,6 +3,7 @@ package com.shopme.admin.order;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import com.shopme.common.entity.Customer;
 import com.shopme.common.entity.order.Order;
 import com.shopme.common.entity.order.OrderDetail;
 import com.shopme.common.entity.order.OrderStatus;
+import com.shopme.common.entity.order.OrderTrack;
 import com.shopme.common.entity.order.PaymentMethod;
 import com.shopme.common.entity.product.Product;
 
@@ -125,13 +127,15 @@ public class OrderRepositoryTests {
 
 	@Test
 	public void testUpdateOrder() {
-		Integer orderId = 2;
+		Integer orderId = 9;
 		Order order = repo.findById(orderId).get();
 		
-		order.setStatus(OrderStatus.SHIPPING);
+		order.setStatus(OrderStatus.PICKED);
 		order.setPaymentMethod(PaymentMethod.COD);
 		order.setOrderTime(new Date());
 		order.setDeliverDays(2);
+		
+		
 		Order updatedOrder = repo.save(order);
 		
 		assertThat(updatedOrder.getStatus()).isEqualTo(OrderStatus.SHIPPING);
@@ -154,5 +158,33 @@ public class OrderRepositoryTests {
 		 Optional<Order> result = repo.findById(orderId);
 		assertThat(result).isNotPresent();
 	}
+	
+	@Test
+	public void testUpdateOrderTracks() {
+		Integer orderId = 9;
+		Order order = repo.findById(orderId).get();
+		
+		OrderTrack newTrack = new OrderTrack();
+		newTrack.setOrder(order);
+		newTrack.setUpdatedTime(new Date());
+		newTrack.setStatus(OrderStatus.PICKED);
+		newTrack.setNotes(OrderStatus.PICKED.defaultDescription());
+		
+		OrderTrack processingTrack = new OrderTrack();
+		processingTrack.setOrder(order);
+		processingTrack.setUpdatedTime(new Date());
+		processingTrack.setStatus(OrderStatus.PACKAGED);
+		processingTrack.setNotes(OrderStatus.PACKAGED.defaultDescription());
+		
+		List<OrderTrack> orderTracks = order.getOrderTracks();
+		orderTracks.add(newTrack);
+		orderTracks.add(processingTrack);
+		
+		Order updatedOrder = repo.save(order);
+		
+		assertThat(updatedOrder.getOrderTracks()).hasSizeGreaterThan(1);
+	}
+	
+	
 	
 }

@@ -52,13 +52,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
 				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper")
 				
-				.antMatchers("/customers/**","/orders/**").hasAnyAuthority("Admin", "Salesperson")
+				.antMatchers("/customers/**","/orders/**","/get_shipping_cost").hasAnyAuthority("Admin", "Salesperson")
 
 				.antMatchers("/products/**").hasAnyAuthority("Admin", "Editor")
 
 				.anyRequest().authenticated().and().formLogin().loginPage("/login").usernameParameter("email")
 				.permitAll().and().logout().permitAll().and().rememberMe().key("AbcDefgHijKlmnOpqrs_1234567890")
 				.tokenValiditySeconds(7 * 24 * 60 * 60);
+		
+				http.headers().frameOptions().sameOrigin();
 
 	}
 
