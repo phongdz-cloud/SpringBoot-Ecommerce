@@ -46,8 +46,8 @@
 										th:href="@{'/address_book/default/0?redirect=cart'}">[Set as
 										default]</a>
 
-									<a th:if="${param.redirect != null && param.redirect[0] == 'checkout'}"
-										th:href="@{redirectedFromCheckoutPage}">[Choose]</a>
+									<a th:if="redirectedFromCheckoutPage"
+										th:href="@{'/address_book/default/0?redirect=checkout'}">[Choose]</a>
 
 								</th:block>
 

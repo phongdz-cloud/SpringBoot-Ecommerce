@@ -10,7 +10,7 @@
 			<h2>Manage Orders | [[${pageTitle}]]</h2>
 		</div>
 
-		<form th:action="@{/order/save}" method="post" th:object="${order}">
+		<form th:action="@{/order/save}" method="post" onsubmit="return processFormBeforeSubmit();" th:object="${order}">
 			<input type="hidden" th:field="*{id}" />
 			<div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -35,14 +35,13 @@
 					</div>
 
 					<div class="tab-pane fade p-3 " id="products" role="tabpanel">
-						<h2>Edit Products</h2>
 						<div th:replace="orders/order_form_products :: content"></div>
 					</div>
 					<div class="tab-pane fade p-3" id="shipping" role="tabpanel">
 						<div th:replace="orders/order_form_shipping :: content"></div>
 					</div>
 					<div class="tab-pane fade p-3" id="track" role="tabpanel">
-						<h2>Edit Order Tracking</h2>
+						<div th:replace="orders/order_form_tracks :: content"></div>
 					</div>
 				</div>
 			</div>
@@ -60,19 +59,23 @@
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";
 		moduleURL = "[[@{/orders}]]";
-
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";
 		$(document).ready(function () {
 			$('#buttonCancel').click(function () {
 				window.location = "[[@{/orders}]]";
 			});
 		});
 	</script>
+	
 	<script th:src="@{/js/common_form.js}"></script>
 	<script th:src="@{/js/common_form_country_state.js}"></script>
 	<script th:src="@{/js/jquery.number.min.js}"></script>
 	<script th:src="@{/js/order_form_overview_products.js}"></script>
 	<script th:src="@{/js/order_form_add_product.js}"></script>
-
+	<script th:src="@{/js/order_form_remove_product.js}"></script>
+	<script th:src="@{/js/order_form_tracks.js}"></script>
+	
 </body>
 
 </html>
